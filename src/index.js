@@ -1,24 +1,14 @@
-import _ from "lodash";
 import "./style.css";
-import Icon from "./icon.png";
-import printMe from "./print";
-
-if (process.env.NODE_ENV !== "production") {
-  console.log("Looks like we are in development mode!");
+if (process.env.NODE_ENV === "development") {
+  require("./index.html");
 }
 
-function component() {
-  const element = document.createElement("div");
-  const btn = document.createElement("button");
+const buttons = document.getElementsByTagName("button");
 
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-
-  btn.innerHTML = "Click me and check the console!";
-  btn.onclick = printMe;
-
-  element.appendChild(btn);
-
-  return element;
+for (let b of buttons) {
+  b.addEventListener("click", OnMenuItemClicked);
 }
 
-document.body.appendChild(component());
+function OnMenuItemClicked(event) {
+  console.log(event.target);
+}
